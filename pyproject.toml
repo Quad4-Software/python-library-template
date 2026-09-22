@@ -24,6 +24,8 @@ dependencies = []
 [project.urls]
 Homepage = "https://quad4.io"
 Repository = "https://github.com/Quad4-Software/python-library-template"
+Issues = "https://github.com/Quad4-Software/python-library-template/issues"
+Changelog = "https://github.com/Quad4-Software/python-library-template/blob/master/CHANGELOG.md"
 
 [tool.hatch.version]
 path = "src/packagename/__init__.py"
@@ -31,6 +33,7 @@ path = "src/packagename/__init__.py"
 [dependency-groups]
 dev = [
     "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
     "ruff>=0.16.8",
     "bandit>=1.9.4",
     "mypy>=2.3.1",
@@ -90,5 +93,14 @@ files = ["src", "tests"]
 [tool.bandit]
 exclude_dirs = ["tests"]
 
+[tool.coverage.run]
+branch = true
+source = ["src/packagename"]
+
+[tool.coverage.report]
+show_missing = true
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+xfail_strict = true
+filterwarnings = ["error"]
